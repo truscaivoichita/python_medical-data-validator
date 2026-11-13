@@ -13,9 +13,14 @@
 # }
 # ?The medical_records list will store dictionaries, each of them representing a patient. Add a dictionary with a key patient_id and value of the string P1001 to the medical_records list.
 
+# Step 3
+# Add a key age with the value of the integer 34 and a key gender with the value of the string Female to your dictionary. Don't forget the comma between the key-value pairs.
+
 medical_records = [
     {
-           'patient_id': 'P1001'
+           'patient_id': 'P1001',
+           "age": 34,
+            "gender":"Female"
        }
 ]
 print("medical records:", medical_records)
