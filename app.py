@@ -172,6 +172,20 @@
 # <re.Match object; span=(11, 12), match='4'>
 # After the letter p, patient_id should have a series of numbers. So, modify your regex pattern to be the raw string r'p\d'.
 
+# Step 28
+# Quantifiers are used in regular expressions to specify how many times a character can be repeated. For example, the + character matches the previous character one or more times:
+
+# Example Code
+# import re
+
+# book = "Fahrenheit 451"
+# print(re.search(r'\d', book))
+# <re.Match object; span=(11, 12), match='4'>
+
+# print(re.search(r'\d+', book))
+# <re.Match object; span=(11, 14), match='451'>
+# So append a + quantifier to your regex pattern to match one or more digits.
+
 import re
 
 medical_records = [
@@ -213,7 +227,7 @@ print("medical records:", medical_records)
 
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
     constraints = {
-        "patient_id":isinstance(patient_id, str) and re.search(r"p\d", patient_id, re.IGNORECASE)
+        "patient_id":isinstance(patient_id, str) and re.search(r"p\d+", patient_id, re.IGNORECASE)
     }
     return constraints
 
