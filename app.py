@@ -210,6 +210,10 @@
 # Using the and operator, add a second expression to the value of the age key to check that.
 # Valid format.
 # {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True}
+
+# Step 32
+# Add another key gender to the constraints dictionary. Following the format of the expression you wrote in the previous steps, verify that gender is a string. Then, use the and operator to check that the lowercase gender is in ('male', 'female').
+
 import re
 
 medical_records = [
@@ -252,7 +256,8 @@ print("medical records:", medical_records)
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
     constraints = {
         "patient_id":isinstance(patient_id, str) and re.fullmatch(r"p\d+", patient_id, re.IGNORECASE),
-        "age":isinstance(age, int) and age >= 18
+        "age":isinstance(age, int) and age >= 18,
+        "gender": isinstance(gender, str) and gender.lower() in ("male", "female")
     }
     return constraints
 
