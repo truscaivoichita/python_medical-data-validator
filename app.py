@@ -68,7 +68,10 @@
 # Step 13
 # To test the first if statement of your function, turn medical_records into a string. You should see Invalid format: expected a list or tuple. printed to the terminal.
 
-medical_records = """ [
+# Step 14
+# Now turn medical_records back to a list/tuple of dictionaries.
+#
+medical_records = [
     {
         'patient_id': 'P1001',
         'age': 34,
@@ -102,7 +105,6 @@ medical_records = """ [
         'last_visit_id': 'V2304',
     }
 ]
-"""
 
 print("medical records:", medical_records)
 def validate(data):
