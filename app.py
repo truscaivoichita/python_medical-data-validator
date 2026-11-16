@@ -204,6 +204,12 @@
 # Step 30
 # Next, you want to verify that age is an integer. So add another key age to the constraints dictionary. For its value, call isinstance passing age and int as its arguments.
 
+# Step 31
+# age should be an integer greater than or equal to 18.
+
+# Using the and operator, add a second expression to the value of the age key to check that.
+# Valid format.
+# {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True}
 import re
 
 medical_records = [
@@ -246,7 +252,7 @@ print("medical records:", medical_records)
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
     constraints = {
         "patient_id":isinstance(patient_id, str) and re.fullmatch(r"p\d+", patient_id, re.IGNORECASE),
-        "age":isinstance(age, int)
+        "age":isinstance(age, int) and age >= 18
     }
     return constraints
 
