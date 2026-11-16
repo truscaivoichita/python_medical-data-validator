@@ -33,6 +33,23 @@
 # Step 6
 # Create an if statement. For its condition, use the not operator to negate is_sequence. Within the if statement, print Invalid format: expected a list or tuple. and return False
 
+# Step 7
+# Right after your if statement, declare a variable named is_invalid and set it to False. Later on, you'll use it as a flag to run a conditional statement.
+
+# Step 8
+# As you learned in a previous lesson, the enumerate function allows you to keep track of the index while looping over an iterable:
+
+# Example Code
+# person = {'name': 'John', 'age': 33}
+
+# for index, item in enumerate(person):
+    # print(index, item)
+
+# 0 name
+# 1 age
+# Create a for loop that iterates over data. Use the enumerate function to get both the index and the item in data at each iteration. Use index and dictionary as iteration variables.
+
+# For now use pass to fill the loop body.
 medical_records = [
     {
         'patient_id': 'P1001',
@@ -75,3 +92,6 @@ def validate(data):
     if(not is_sequence):
            print("Invalid format: expected a list or tuple.")
            return False
+    is_invalid = False
+    for index, dictionary in enumerate(data):
+            pass
