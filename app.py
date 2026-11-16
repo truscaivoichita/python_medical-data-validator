@@ -237,7 +237,18 @@
 
 # On the right side of the and operator, use the list comprehension syntax to create a list made by evaluating isinstance(i, str) for each i in medications.
 # {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True, 'medications': [True]}
-#
+
+# Step 36
+# The all function returns True if all the elements from the iterable passed to it are truthy, and False otherwise:
+
+# Example Code
+# truthy = [1, 2, 3]
+# print(all(truthy)) # True
+
+# falsy = [0, 1, 2, 3]
+# print(all(falsy)) # False
+# Pass [isinstance(i, str) for i in medications] to all to check that every element in medications is a string.
+
 import re
 
 medical_records = [
@@ -283,7 +294,7 @@ def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_v
         "age":isinstance(age, int) and age >= 18,
         "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
          "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
-         "medications": isinstance(medications, list) and [isinstance(i, str) for i in medications]
+         "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications])
     }
     return constraints
 
