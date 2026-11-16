@@ -220,6 +220,10 @@
 
 # Now add a key diagnosis to the constraints dictionary. For its value, write an expression that checks that diagnosis is either an instance of str or is None.
 # {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True}
+
+# Step 34
+# Next, add a medications key to the constraints dictionary. For its value use isinstance to check that medications is a list.
+# {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True, 'medications': True}
 #
 import re
 
@@ -265,7 +269,8 @@ def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_v
         "patient_id":isinstance(patient_id, str) and re.fullmatch(r"p\d+", patient_id, re.IGNORECASE),
         "age":isinstance(age, int) and age >= 18,
         "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
-         "diagnosis": isinstance(diagnosis, str) or diagnosis is None
+         "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
+         "medications": isinstance(medications, list)
     }
     return constraints
 
