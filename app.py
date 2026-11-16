@@ -87,6 +87,20 @@
 
 # Inside the validate function, use the set() constructor to create a set from the following list of keys that each dictionary should have: ['patient_id', 'age', 'gender', 'diagnosis', 'medications', 'last_visit_id']. Assign the set to a variable named key_set.
 
+# Step 18
+# The keys() method returns a view object containing all the keys from a dictionary:
+
+# Example Code
+# person = {
+   # 'name': 'John',
+   # 'age': 33
+# }
+
+# print(person.keys()) # dict_keys(['name', 'age'])
+# Inside your for loop, after the first if statement, create an if statement that runs when the set of keys from the current dictionary is different from key_set. This is to ensure that no missing or invalid keys are present in the dictionary.
+
+# Within the new if statement, print Invalid format: <dictionary> at position <index> has missing and/or invalid keys. (where <dictionary> and <index> should be replaced by the dictionary and index at the current iteration) and set i
+
 medical_records = [
     {
         'patient_id': 'P1001',
@@ -125,18 +139,26 @@ medical_records = [
 print("medical records:", medical_records)
 def validate(data):
     is_sequence = isinstance(data, (list, tuple))
-    if(not is_sequence):
-           print("Invalid format: expected a list or tuple.")
-           return False
+
+    if not is_sequence:
+        print('Invalid format: expected a list or tuple.')
+        return False
+
     is_invalid = False
-       key_set = set(['patient_id', 'age', 'gender', 'diagnosis', 'medications', 'last_visit_id'])
+    key_set = set(['patient_id', 'age', 'gender', 'diagnosis', 'medications', 'last_visit_id'])
+
     for index, dictionary in enumerate(data):
         if not isinstance(dictionary, dict):
-                    print(f"Invalid format: expected a dictionary at position {index}.")
-                    is_invalid = True
-    if is_invalid == True :
+            print(f'Invalid format: expected a dictionary at position {index}.')
+            is_invalid = True
+
+        if dictionary.keys() != key_set:
+            print(f"Invalid format: {dictionary} at position {index} has missing and/or invalid keys.")
+            is_invalid = True
+
+    if is_invalid:
         return False
-    print("Valid format.")
+    print('Valid format.')
     return True
 
 validate(medical_records)
