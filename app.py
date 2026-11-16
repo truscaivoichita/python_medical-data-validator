@@ -253,6 +253,11 @@
 # Add one last key last_visit_id to the constraints dictionary. For its value, use isinstance to verify that last_visit_id is a string.
 # {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True, 'medications': True, 'last_visit_id': True}
 #
+# Step 38
+# It's time to use another regular expression. Similarly to what you've already done, use the and operator to add an expression to the current value of constraints['last_visit_id'].
+
+# On the right side of the and operator, use the fullmatch function from the re module to ensure that last_visit_id starts with the letter v (either lowercase or uppercase) followed by one or more digits. Use the raw string r'v\d+' for the pattern.
+# {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True, 'medications': True, 'last_visit_id': <re.Match object; span=(0, 5), match='V2301'>}
 import re
 
 medical_records = [
@@ -299,7 +304,7 @@ def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_v
         "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
         "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
         "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications]),
-        "last_visit_id": isinstance(last_visit_id, str)
+        "last_visit_id": isinstance(last_visit_id, str) and re.fullmatch(r"v\d+", last_visit_id, re.IGNORECASE),
     }
     return constraints
 
