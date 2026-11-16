@@ -159,6 +159,19 @@
 
 # After that, you'll see None replaced by the match object <re.Match object; span=(0, 1), match='P'>, where match indicates the match and span indicates its location in the string.
 
+# Step 27
+# Regular expressions can contain special sequences consisting of a backslash (\) followed by a character. These sequences have a special meaning. For example, \d matches a decimal digit.
+
+# In Python, prefixing a string literal with r or R creates a raw string. Raw strings treat backslashes as literal characters rather than escape sequences, making them ideal for regular expressions.
+
+# Example Code
+# import re
+
+# book = "Fahrenheit 451"
+# print(re.search(r'\d', book))
+# <re.Match object; span=(11, 12), match='4'>
+# After the letter p, patient_id should have a series of numbers. So, modify your regex pattern to be the raw string r'p\d'.
+
 import re
 
 medical_records = [
@@ -200,7 +213,7 @@ print("medical records:", medical_records)
 
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
     constraints = {
-        "patient_id":isinstance(patient_id, str) and re.search("p", patient_id, re.IGNORECASE)
+        "patient_id":isinstance(patient_id, str) and re.search(r"p\d", patient_id, re.IGNORECASE)
     }
     return constraints
 
