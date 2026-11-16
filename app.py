@@ -136,6 +136,19 @@
 # As you wrote in the previous step, patient_id should be a string. You want to check that it also has a specific pattern though.
 
 # For that, you are going to use a regular expression. Therefore, at the top of your code, use the import keyword to import the re module.
+#
+# Step 25
+# A regular expression, or regex, is a pattern used to match a sequence of characters in text. The search function from the re module takes a regex pattern and a string as its arguments.
+
+# It returns a corresponding match object if the pattern produces a match. Otherwise it returns None.
+
+# import re
+
+# greeting = "Hello there!"
+# print(re.search('Hi', greeting)) # None
+# print(re.search('Hello', greeting)) # <re.Match object; span=(0, 5), match='Hello'>
+# Call re.search with the string p as the first argument and patient_id as the second argument. Use the and operator to add the function call as a second expression to the value of your patient_id key.
+#
 import re
 
 medical_records = [
@@ -177,7 +190,7 @@ print("medical records:", medical_records)
 
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
     constraints = {
-        "patient_id":isinstance(patient_id, str)
+        "patient_id":isinstance(patient_id, str) and re.search("p", patient_id)
     }
     return constraints
 
