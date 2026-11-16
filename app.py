@@ -264,6 +264,25 @@
 
 # Using the list comprehension syntax, return a list that evaluates key for each key, value in constraints.items().
 # ['patient_id', 'age', 'gender', 'diagnosis', 'medications', 'last_visit_id']
+
+# Step 40
+# List comprehensions also accept if clauses to filter out items from an iterable:
+
+# Example Code
+# nums = [1, 2, 3, 4, 5, 6]
+# even_nums = [num for num in nums if num % 2 == 0]
+# print(even_nums) # [2, 4, 6]
+# Since you want to return a list containing only invalid keys, add an if clause to your comprehension so that each key is added to the list only when value is falsy.
+# []
+
+# Step 41
+# The find_invalid_records function is complete. Now, remove print(find_invalid_records(**medical_records[0])) from your code.
+
+# Step 42
+# Going back to the validate function, after the two if statements and still inside the for loop, create a variable named invalid_records.
+
+# Then, assign it a call to find_invalid_records using the ** operator to unpack dictionary.
+
 import re
 
 medical_records = [
@@ -312,7 +331,7 @@ def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_v
         "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications]),
         "last_visit_id": isinstance(last_visit_id, str) and re.fullmatch(r"v\d+", last_visit_id, re.IGNORECASE),
     }
-    return [key for key, value in constraints.items()]
+    return [key for key, value in constraints.items() if not value]
 
 def validate(data):
     is_sequence = isinstance(data, (list, tuple))
@@ -340,4 +359,4 @@ def validate(data):
 
 validate(medical_records)
 
-print(find_invalid_records(**medical_records[0]))
+# print(find_invalid_records(**medical_records[0]))
