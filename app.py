@@ -249,6 +249,9 @@
 # print(all(falsy)) # False
 # Pass [isinstance(i, str) for i in medications] to all to check that every element in medications is a string.
 
+# Step 37
+# Add one last key last_visit_id to the constraints dictionary. For its value, use isinstance to verify that last_visit_id is a string.
+# {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True, 'medications': True, 'last_visit_id': True}
 import re
 
 medical_records = [
@@ -293,8 +296,9 @@ def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_v
         "patient_id":isinstance(patient_id, str) and re.fullmatch(r"p\d+", patient_id, re.IGNORECASE),
         "age":isinstance(age, int) and age >= 18,
         "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
-         "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
-         "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications])
+        "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
+        "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications]),
+        "last_visit_id": isinstance(last_visit_id, str)
     }
     return constraints
 
