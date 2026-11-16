@@ -186,6 +186,24 @@
 # <re.Match object; span=(11, 14), match='451'>
 # So append a + quantifier to your regex pattern to match one or more digits.
 
+# Step 29
+# Now that your regex matches the letter p followed by one or more digits, one last thing you need to check is that no extra characters are found in the string.
+
+# To do that you can make use of another function from the re module. The fullmatch function returns a match object when the regex pattern matches the entire string and None otherwise.
+
+# Example Code
+# import re
+
+# book = "Fahrenheit 451"
+# print(re.fullmatch(r'\d+', book)) #None
+
+# print(re.fullmatch(r'Fahrenheit \d+', book))
+# <re.Match object; span=(0, 14), match='Fahrenheit 451'>
+# Replace the search call with a fullmatch call keeping the same arguments.
+
+# Step 30
+# Next, you want to verify that age is an integer. So add another key age to the constraints dictionary. For its value, call isinstance passing age and int as its arguments.
+
 import re
 
 medical_records = [
@@ -227,7 +245,8 @@ print("medical records:", medical_records)
 
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
     constraints = {
-        "patient_id":isinstance(patient_id, str) and re.search(r"p\d+", patient_id, re.IGNORECASE)
+        "patient_id":isinstance(patient_id, str) and re.fullmatch(r"p\d+", patient_id, re.IGNORECASE),
+        "age":isinstance(age, int)
     }
     return constraints
 
