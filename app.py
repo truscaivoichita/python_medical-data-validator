@@ -213,7 +213,14 @@
 
 # Step 32
 # Add another key gender to the constraints dictionary. Following the format of the expression you wrote in the previous steps, verify that gender is a string. Then, use the and operator to check that the lowercase gender is in ('male', 'female').
+# {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True}
 
+# Step 33
+# The is and is not operators check whether two values refer to the same object. This is called an identity comparison. You can use is None to check whether a value is the None object, and is not None to check whether it is not the None object.
+
+# Now add a key diagnosis to the constraints dictionary. For its value, write an expression that checks that diagnosis is either an instance of str or is None.
+# {'patient_id': <re.Match object; span=(0, 5), match='P1001'>, 'age': True, 'gender': True, 'diagnosis': True}
+#
 import re
 
 medical_records = [
@@ -257,7 +264,8 @@ def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_v
     constraints = {
         "patient_id":isinstance(patient_id, str) and re.fullmatch(r"p\d+", patient_id, re.IGNORECASE),
         "age":isinstance(age, int) and age >= 18,
-        "gender": isinstance(gender, str) and gender.lower() in ("male", "female")
+        "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
+         "diagnosis": isinstance(diagnosis, str) or diagnosis is None
     }
     return constraints
 
