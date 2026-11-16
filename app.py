@@ -283,6 +283,12 @@
 
 # Then, assign it a call to find_invalid_records using the ** operator to unpack dictionary.
 
+# Step 43
+# If you pass invalid data to the validate function, for example a list containing non-dictionary elements or dictionaries with missing and/or invalid keys, Python will raise an AttributeError and a TypeError, respectively. Feel free to verify it by modifying the medical_records list.
+
+# To avoid that, after setting is_invalid to True, use the continue keyword to skip to the next iteration in both your if statements.
+# Invalid format: expected a dictionary at position 4.
+
 import re
 
 medical_records = [
@@ -317,7 +323,7 @@ medical_records = [
         'diagnosis': 'Chronic Back Pain',
         'medications': ['Ibuprofen', 'Physical Therapy'],
         'last_visit_id': 'V2304',
-    }
+    }, "Ana"
 ]
 
 print("medical records:", medical_records)
@@ -347,10 +353,12 @@ def validate(data):
         if not isinstance(dictionary, dict):
             print(f'Invalid format: expected a dictionary at position {index}.')
             is_invalid = True
+            continue
 
         if dictionary.keys() != key_set:
             print(f"Invalid format: {dictionary} at position {index} has missing and/or invalid keys.")
             is_invalid = True
+            continue
 
     if is_invalid:
         return False
