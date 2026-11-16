@@ -127,6 +127,11 @@
 
 # At the bottom of your code, print the result of calling the find_invalid_records function. For its arguments, use the ** operator to unpack medical_records[0].
 
+# Step 23
+# The constraints dictionary will contain each key you should expect to have in the data to validate. The value associated to each of them will indicate the result of the validation.
+
+# Add the key patient_id to the constraints dictionary. For its value, use a call to isinstance passing in patient_id and str as the arguments.
+
 medical_records = [
     {
         'patient_id': 'P1001',
@@ -165,7 +170,9 @@ medical_records = [
 print("medical records:", medical_records)
 
 def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
-    constraints = {}
+    constraints = {
+        "patient_id":isinstance(patient_id, str)
+    }
     return constraints
 
 def validate(data):
