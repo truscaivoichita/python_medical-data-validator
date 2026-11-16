@@ -74,6 +74,9 @@
 # Step 15
 # To test the second conditional statement, add two items of your choice that are not dictionaries at the end of the medical_records list. You should see two validation messages printed to the terminal.
 
+# Step 16
+# Now that you tested the validation for this part, remove the last two items from the medical_records list.
+
 medical_records = [
     {
         'patient_id': 'P1001',
@@ -106,9 +109,7 @@ medical_records = [
         'diagnosis': 'Chronic Back Pain',
         'medications': ['Ibuprofen', 'Physical Therapy'],
         'last_visit_id': 'V2304',
-    },
-    "Ana",
-    "Maria"
+    }
 ]
 
 print("medical records:", medical_records)
