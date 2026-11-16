@@ -55,6 +55,10 @@
 # You are checking if the data passed to your function is a list or a tuple. You still need to ensure that each item in the sequence is a dictionary.
 
 # Inside your for loop, if the item in dictionary is not an instance of dict, print Invalid format: expected a dictionary at position <index>. (where <index> should be replaced by the current index) and set is_invalid to True.
+#
+# Step 10
+# After your for loop, still inside the validate function, create an if statement. If is_invalid is True, return False.
+#
 medical_records = [
     {
         'patient_id': 'P1001',
@@ -102,3 +106,5 @@ def validate(data):
         if not isinstance(dictionary, dict):
                     print(f"Invalid format: expected a dictionary at position {index}.")
                     is_invalid = True
+    if is_invalid == True :
+        return False
